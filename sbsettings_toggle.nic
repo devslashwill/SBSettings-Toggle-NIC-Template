@@ -1,0 +1,98 @@
+nic 1
+name "iphone/SBSettings toggle"
+
+dir Themes/
+dir Themes/Default/
+dir Themes/Default/@@PROJECTNAME@@/
+dir Themes/HUD/
+dir Themes/HUD/@@PROJECTNAME@@/
+dir Themes/Tech Shadows/
+dir Themes/Tech Shadows/@@PROJECTNAME@@/
+dir Themes/Tenuis Matte/
+dir Themes/Tenuis Matte/@@PROJECTNAME@@/
+
+file 57 Toggle.m
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
+// Required
+
+BOOL isCapable()
+{
+	
+}
+
+BOOL isEnabled()
+{
+	
+}
+
+void setState(BOOL enabled)
+{
+	
+}
+
+float getDelayTime()
+{
+	
+}
+
+/* Optional
+
+BOOL getStateFast()
+{
+	
+}
+
+void invokeHoldAction()
+{
+	
+}
+
+void closeWindow()
+{
+	
+}
+
+// Convenience method to get the SBSettings window
+
+UIWindow *getAppWindow()
+{
+	for (UIWindow *window in [[UIApplication sharedApplication] windows])
+	{
+		if ([window respondsToSelector:@selector(getCurrentTheme)])
+			return window;
+	}
+
+	return nil;
+}
+
+*/
+
+file 15 Makefile
+include theos/makefiles/common.mk
+
+LIBRARY_NAME = Toggle
+Toggle_FILES = Toggle.m
+Toggle_FRAMEWORKS = UIKit CoreGraphics
+Toggle_INSTALL_PATH = /var/mobile/Library/SBSettings/Toggles/@@PROJECTNAME@@/
+
+include $(THEOS_MAKE_PATH)/library.mk
+
+internal-stage::
+	$(ECHO_NOTHING)cp -r Themes $(THEOS_STAGING_DIR)/var/mobile/Library/SBSettings/$(ECHO_END)
+
+after-install::
+	ssh root@$(THEOS_DEVICE_IP) 'killall SpringBoard'
+
+
+file 9 control
+Package: @@PACKAGENAME@@
+Name: @@FULLPROJECTNAME@@
+Depends: sbsettings
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: An awesome SBSettings toggle of some sort!!
+Maintainer: @@USER@@
+Author: @@USER@@
+Section: Addons (SBSettings)

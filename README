@@ -1,0 +1,8 @@
+This is a NIC template for theos that generates an empty project for creating an SBSettings toggle.
+
+This contains all the required and optional functions that a toggle requires and also a convenience method for getting the SBSettings window.
+It also creates folders for the default themes in which to place the toggle icons.
+
+To install this place it in template/iphone in the theos folder, then run bin/nic.pl to use it.
+
+@WillFour20
