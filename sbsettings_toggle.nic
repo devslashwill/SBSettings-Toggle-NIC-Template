@@ -83,7 +83,7 @@ internal-stage::
 	$(ECHO_NOTHING)cp -r Themes $(THEOS_STAGING_DIR)/var/mobile/Library/SBSettings/$(ECHO_END)
 
 after-install::
-	ssh root@$(THEOS_DEVICE_IP) 'killall SpringBoard'
+	install.exec "killall SpringBoard"
 
 
 file 9 control
